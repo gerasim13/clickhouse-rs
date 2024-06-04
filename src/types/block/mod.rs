@@ -153,7 +153,7 @@ impl Block {
         }
     }
 
-    pub(crate) fn load<R>(reader: &mut R, tz: Tz, compress: bool) -> Result<Self>
+    pub fn load<R>(reader: &mut R, tz: Tz, compress: bool) -> Result<Self>
     where
         R: Read + ReadEx,
     {
@@ -326,7 +326,7 @@ impl<K: ColumnType> Block<K> {
         })
     }
 
-    pub(crate) fn write(&self, encoder: &mut Encoder, compress: bool) {
+    pub fn write(&self, encoder: &mut Encoder, compress: bool) {
         if compress {
             let mut tmp_encoder = Encoder::new();
             self.write(&mut tmp_encoder, false);
